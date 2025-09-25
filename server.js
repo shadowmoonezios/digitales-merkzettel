@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).send({ error: 'Something broke!', details: err.message });
 });
 
 app.listen(PORT, () => {
